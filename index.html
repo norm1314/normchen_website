@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <h1>Self-Care! My daily emotion record.</h1>
+    <h2>feeling score explain: 0 ~ 9</h2>
+    <h3>0: means no emotional arousal</h3>
+    <h3>9: means the strongest feeling</h3>
+    <ol id = "olTable">
+
+    </ol>
+    <script>
+       /* my original try{} code
+       try {
+            const olTable = document.getElementById("olTable")
+              
+
+            const result = await fetch("http://rayrm.local:8080/emotion_record", {method: "GET"})
+            const table = await result.json();//retrieve the data, careful for json typo
+            
+            table.forEach(t=>{
+                const li = document.createElement("li")
+                li.id = t.id;
+                li.textContent = t.thought;
+                li. = t.emotion;
+                olTable.appendChild(li);
+                
+            })
+            }
+       */
+    printTable(); 
+        
+    async function printTable(){
+            try {
+    const form = document.createElement("form"); // create a form element
+    const olTable = document.createElement("ol"); // create an ordered list element
+
+    const result = await fetch("http://rayrm.local:80/emotion_record", {method: "GET"});
+    const table = await result.json();
+
+    table.forEach(t=>{
+      const li = document.createElement("li"); // create a list item element
+
+      const thoughtLabel = document.createElement("label"); // create a label element for the thought
+      thoughtLabel.textContent = "Speak:";
+      const thoughtInput = document.createElement("input"); // create an input element for the thought
+      thoughtInput.type = "text";
+      thoughtInput.name = `thought_${t.id}`;
+      thoughtInput.value = t.thought;
+      thoughtLabel.appendChild(thoughtInput);
+
+      const emotionLabel = document.createElement("label"); // create a label element for the emotion
+      emotionLabel.textContent = " I feel:";
+      const emotionInput = document.createElement("input"); // create an input element for the emotion
+      emotionInput.type = "text";
+      emotionInput.name = `emotion_${t.id}`;
+      emotionInput.value = t.emotion;
+      emotionLabel.appendChild(emotionInput);
+
+      li.appendChild(thoughtLabel);
+      li.appendChild(emotionLabel);
+      olTable.appendChild(li);
+    });
+
+    form.appendChild(olTable);
+    document.body.appendChild(form); // append the form to the body
+  }
+             
+        catch(e) {
+            console.log(`error! printTable. ${e}`);
+        }
+    }
+        </script>
+    
+</body>
+</html>
