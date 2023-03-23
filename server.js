@@ -16,7 +16,7 @@ const app = express()
 app.use(express.json());
 
 
-//serve the html on address "(http://localhost:80)/"
+//serve the html on address "(http://localhost:8080)/"
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`) )
 //printTable and transmit data in JSON format
 app.get("/emotion_record", async (req, res) => {
@@ -75,7 +75,7 @@ app.delete("/emotion_record", async (req, res) => {
 
 
 //start a server
-app.listen(80, () =>  console.log("web server is listening on 80"))
+app.listen(8080, () =>  console.log("web server is listening on 8080"))
 
 
 
