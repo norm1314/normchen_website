@@ -40,7 +40,7 @@
     const form = document.createElement("form"); // create a form element
     const olTable = document.createElement("ol"); // create an ordered list element
 
-    const result = await fetch("http://hostname:8080/emotion_record", {method: "GET"});
+    const result = await fetch("http://localhost:8080/emotion_record", {method: "GET"});
     const table = await result.json();
 
     table.forEach(t=>{
