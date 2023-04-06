@@ -20,7 +20,7 @@
             const olTable = document.getElementById("olTable")
               
 
-            const result = await fetch("http://rayrm.local:8080/emotion_record", {method: "GET"})
+            const result = await fetch("http://rayrm.local:9090/emotion_record", {method: "GET"})
             const table = await result.json();//retrieve the data, careful for json typo
             
             table.forEach(t=>{
@@ -40,7 +40,7 @@
     const form = document.createElement("form"); // create a form element
     const olTable = document.createElement("ol"); // create an ordered list element
 
-    const result = await fetch("http://rayrm.local:80/emotion_record", {method: "GET"});
+    const result = await fetch("http://localhost:9090/emotion_record", {method: "GET"});
     const table = await result.json();
 
     table.forEach(t=>{
